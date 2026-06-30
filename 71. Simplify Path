@@ -1,0 +1,36 @@
+import java.util.*;
+class Solution {
+    public String simplifyPath(String path) {
+        StringTokenizer st = new StringTokenizer(path, "/");
+        Stack<String> stack = new Stack<>();
+        Stack<String> rev = new Stack<>();
+        
+        while (st.hasMoreTokens()) {
+            String temp = st.nextToken();
+            if (temp.equals(".")) {
+                continue;
+            }
+            if (temp.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+                continue;
+            }
+            stack.push(temp);
+        }
+        
+        while (!stack.isEmpty()) {
+            rev.push(stack.pop());
+        }
+        
+        String str = "";
+        if (rev.isEmpty()) {
+            return "/";
+        }
+        
+        while (!rev.isEmpty()) {
+            str += "/" + rev.pop();
+        }
+        return str;
+    }
+}
