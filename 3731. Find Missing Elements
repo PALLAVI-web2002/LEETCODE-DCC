@@ -1,0 +1,14 @@
+class Solution:
+    def findMissingElements(self, nums: List[int]) -> Listnums.sort()
+
+        missing_numbers = []
+        prev_num = nums[0]
+
+        for i in range(1, len(nums)):
+            while nums[i] != prev_num + 1:
+                prev_num += 1
+                missing_numbers.append(prev_num)
+
+            prev_num = nums[i]
+
+        return missing_numbers
