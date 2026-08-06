@@ -1,0 +1,21 @@
+class Solution {
+    public int countMinOperations(int arr[]) {
+        int ones=0;
+        int len=0;
+        int max=-1;
+        for(int val:arr){
+            max=Math.max(val,max);
+        }
+        while((max>>1)!=0){
+            len++;
+            max>>=1;
+        }
+        for(int val:arr){
+            while(val>0){
+                ones++;
+                val&=(val-1);
+            }
+        }
+        return len+ones;
+    }
+}
